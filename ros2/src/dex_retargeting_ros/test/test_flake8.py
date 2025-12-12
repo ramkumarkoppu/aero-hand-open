@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# Copyright 2025 TetherIA, Inc.
+# Copyright 2017 Open Source Robotics Foundation, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from aero_open_sdk.aero_hand import AeroHand
+from ament_flake8.main import main_with_errors
+import pytest
 
-if __name__ == "__main__":
-    hand = AeroHand()
 
-    ## Perform homing
-    ## NOTE: While performing homing, robot will not respond to any other commands.
-    ## Make sure the hand is in a safe position to perform homing.
-    hand.send_homing()
+@pytest.mark.flake8
+@pytest.mark.linter
+def test_flake8():
+    rc, errors = main_with_errors(argv=[])
+    assert rc == 0, \
+        'Found %d code style errors / warnings:\n' % len(errors) + \
+        '\n'.join(errors)

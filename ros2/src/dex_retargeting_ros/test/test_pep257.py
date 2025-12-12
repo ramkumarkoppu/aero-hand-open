@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# Copyright 2025 TetherIA, Inc.
+# Copyright 2015 Open Source Robotics Foundation, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from aero_open_sdk.aero_hand import AeroHand
+from ament_pep257.main import main
+import pytest
 
-if __name__ == "__main__":
-    hand = AeroHand()
 
-    ## Perform homing
-    ## NOTE: While performing homing, robot will not respond to any other commands.
-    ## Make sure the hand is in a safe position to perform homing.
-    hand.send_homing()
+@pytest.mark.linter
+@pytest.mark.pep257
+def test_pep257():
+    rc = main(argv=['.', 'test'])
+    assert rc == 0, 'Found code style errors / warnings'
